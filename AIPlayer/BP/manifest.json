@@ -1,16 +1,36 @@
 {
-  "format_version": 2,
-  "header": {
-    "name": "AI Agent Addon",
-    "description": "Une IA personnalisée dans Minecraft",
-    "uuid": "123e4567-e89b-12d3-a456-426614174000",
-    "version": [1, 0, 0]
-  },
-  "modules": [
-    {
-      "type": "scripting",
-      "uuid": "123e4567-e89b-12d3-a456-426614174001",
-      "version": [1, 0, 0]
-    }
-  ]
-}
+    "format_version": 2,
+    "header": {
+      "description": "My scripting behavior pack Add-On!",
+      "name": "My Behavior Pack",
+      "uuid":"706ec52c-bec7-4474-8c01-d6b7588d46bb",
+      "version": [1, 0, 0],
+      "min_engine_version": [1, 20, 30]
+    },
+    "modules":
+      [
+        {
+          "description": "My Second Add-On!",
+            "type": "data",
+            "uuid": "68822293-a686-4dc8-a205-2bf6c1d06b56",
+            "version": [1, 0, 0]
+        },
+        {
+          "description": "Test Scripting",
+            "type": "script",
+            "uuid": "153e410d-8ac5-4d1d-850a-78826991cad1",
+            "version": [1, 0, 0],
+            "entry": "scripts/main.js"
+        }
+      ],
+    "dependencies": [
+        {
+			"uuid": "f7a3adf8-2bef-8ae7-1b6d-756603192248",
+			"version": [1, 0, 0]
+		},
+        {
+            "module_name":"@minecraft/server",
+            "version":"1.5.0"
+        }
+    ]
+  }

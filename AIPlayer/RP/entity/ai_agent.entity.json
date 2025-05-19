@@ -1,0 +1,19 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "minecraft:ai_agent",
+      "materials": {
+        "default": "entity_texture"
+      },
+      "textures": {
+        "default": "textures/entity/ai_agent"
+      },
+      "geometry": {
+        "default": "geometry.humanoid"
+      },
+      "animations": {},
+      "render_controllers": ["controller.render.default"]
+    }
+  }
+}

@@ -1,9 +1,9 @@
-import { world, system, EntityTypes, MinecraftEntityTypes } from "@minecraft/server";
+import { world, system } from "@minecraft/server";
 
 system.runInterval(() => {
   for (const player of world.getPlayers()) {
     const dimension = player.dimension;
-    const entities = dimension.getEntities({ type: "minecraft:ai_agent" });
+    const entities = dimension.getEntities({ type: "tabarcraft:ai_agent" });
 
     for (const entity of entities) {
       const targetPos = player.location;
@@ -37,7 +37,9 @@ world.beforeEvents.chatSend.subscribe((event) => {
       type: "tabarcraft:ai_agent"
     })) {
       entity.triggerEvent("tabarcraft:become_hostile");
-      console.log("TU N'AURAIS JAMAIS, AU GRAND JAMAIS DÛ PRONONCER CE MOT!!!!! TU VAS LE PAYER CHER!");
+
+      // Message rouge via tellraw
+      entity.runCommandAsync(`tellraw @a {"rawtext":[{"text":"§cTU N'AURAIS JAMAIS, AU GRAND JAMAIS DÛ PRONONCER CE MOT !!!!! TU VAS LE PAYER CHER !"}]}`);
     }
   }
 });

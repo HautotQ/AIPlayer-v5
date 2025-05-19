@@ -37,7 +37,7 @@ world.beforeEvents.chatSend.subscribe((event) => {
       type: "tabarcraft:ai_agent"
     })) {
       entity.triggerEvent("tabarcraft:become_hostile");
-      console.log("TU N'AURAIS JAIMAIS, AU GRAND JAMAIS DÛ PRONONCER CE MOT!!!!! TU VAS LE PAYER CHER!");
+      console.log("TU N'AURAIS JAMAIS, AU GRAND JAMAIS DÛ PRONONCER CE MOT!!!!! TU VAS LE PAYER CHER!");
     }
   }
 });

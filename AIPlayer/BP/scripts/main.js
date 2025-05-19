@@ -32,7 +32,11 @@ system.runInterval(() => {
 world.beforeEvents.chatSend.subscribe((event) => {
   const message = event.message.toLowerCase();
 
-  if (message.includes("quentin")) {
+  if (
+    message.includes("quentin") ||
+    message.includes("Tabarcraft") ||
+    message.includes("Quentin")
+  ) {
     for (const entity of world.getDimension("overworld").getEntities({
       type: "tabarcraft:ai_agent"
     })) {

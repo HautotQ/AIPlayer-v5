@@ -1,0 +1,16 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "AI Agent Addon",
+    "description": "Une IA personnalisée dans Minecraft",
+    "uuid": "123e4567-e89b-12d3-a456-426614174000",
+    "version": [1, 0, 0]
+  },
+  "modules": [
+    {
+      "type": "scripting",
+      "uuid": "123e4567-e89b-12d3-a456-426614174001",
+      "version": [1, 0, 0]
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "format_version": "1.10.0",
+  "format_version": "1.20.10",
   "minecraft:entity": {
     "description": {
       "identifier": "tabarcraft:ai_agent",
@@ -9,21 +9,55 @@
     },
     "components": {
       "minecraft:type_family": {
-        "family": ["monster", "ai_agent"]
+        "family": ["tabar_ai", "humanoid", "monster"]
       },
+      "minecraft:physics": {},
       "minecraft:nameable": {},
       "minecraft:health": {
-        "value": 20,
-        "max": 20
+        "value": 40,
+        "max": 40
       },
       "minecraft:movement": {
-        "value": 0.1
+        "value": 0.2
       },
-      "minecraft:collision_box": {
-        "width": 0.6,
-        "height": 1.8
+      "minecraft:attack": {
+        "damage": 6
       },
-      "minecraft:physics": {}
+      "minecraft:behavior.random_stroll": {
+        "priority": 1
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 2,
+        "look_distance": 6
+      }
+    },
+    "events": {
+      "tabarcraft:become_hostile": {
+        "add": {
+          "component_groups": ["hostile_mode"]
+        }
+      }
+    },
+    "component_groups": {
+      "hostile_mode": {
+        "minecraft:behavior.nearest_attackable_target": {
+          "priority": 0,
+          "target_dist": 16,
+          "entity_types": [
+            {
+              "filters": {
+                "test": "is_family",
+                "operator": "==",
+                "value": "player"
+              },
+              "max_dist": 16
+            }
+          ]
+        },
+        "minecraft:behavior.melee_attack": {
+          "priority": 1
+        }
+      }
     }
   }
 }

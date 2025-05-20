@@ -1,0 +1,86 @@
+{
+  "format_version": "1.8.0",
+  "animation_controllers": {
+    "controller.animation.tabarcraft:ai_agent": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            { "walk": "query.is_moving && !query.is_sneaking && !query.is_swimming" },
+            { "sneak_walk": "query.is_moving && query.is_sneaking" },
+            { "idle_sneaking": "!query.is_moving && query.is_sneaking" },
+            { "jump": "query.is_jumping" },
+            { "swim": "query.is_swimming && query.is_moving" },
+            { "swim_idle": "query.is_swimming && !query.is_moving" },
+            { "fly": "query.is_gliding" },
+            { "ride": "query.is_riding" },
+            { "sleep": "query.is_sleeping" },
+            { "use_item": "query.is_using_item" },
+            { "attack": "query.is_attacking" },
+            { "idle": "true" }
+          ]
+        },
+
+        "walk": {
+          "animations": [ "animation.player.walk" ],
+          "transitions": [ { "default": "!query.is_moving || query.is_sneaking || query.is_swimming" } ]
+        },
+
+        "sneak_walk": {
+          "animations": [ "animation.player.move_sneaking" ],
+          "transitions": [ { "default": "!query.is_moving || !query.is_sneaking" } ]
+        },
+
+        "idle_sneaking": {
+          "animations": [ "animation.player.idle_sneaking" ],
+          "transitions": [ { "default": "query.is_moving || !query.is_sneaking" } ]
+        },
+
+        "jump": {
+          "animations": [ "animation.player.jump" ],
+          "transitions": [ { "default": "!query.is_jumping" } ]
+        },
+
+        "swim": {
+          "animations": [ "animation.player.swim" ],
+          "transitions": [ { "default": "!query.is_swimming || !query.is_moving" } ]
+        },
+
+        "swim_idle": {
+          "animations": [ "animation.player.swim_idle" ],
+          "transitions": [ { "default": "!query.is_swimming || query.is_moving" } ]
+        },
+
+        "fly": {
+          "animations": [ "animation.player.fly" ],
+          "transitions": [ { "default": "!query.is_gliding" } ]
+        },
+
+        "ride": {
+          "animations": [ "animation.player.ride" ],
+          "transitions": [ { "default": "!query.is_riding" } ]
+        },
+
+        "sleep": {
+          "animations": [ "animation.player.sleeping" ],
+          "transitions": [ { "default": "!query.is_sleeping" } ]
+        },
+
+        "use_item": {
+          "animations": [ "animation.player.use_item" ],
+          "transitions": [ { "default": "!query.is_using_item" } ]
+        },
+
+        "attack": {
+          "animations": [ "animation.player.attack_bare_hand" ],
+          "transitions": [ { "default": "!query.is_attacking" } ]
+        },
+
+        "idle": {
+          "animations": [ "animation.player.idle" ],
+          "transitions": [ { "default": "false" } ]
+        }
+      }
+    }
+  }
+}

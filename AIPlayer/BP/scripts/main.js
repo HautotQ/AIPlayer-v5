@@ -15,7 +15,9 @@ world.events.playerJoin.subscribe(event => {
 world.beforeEvents.chatSend.subscribe(ev => {
   const player = ev.sender;
 
-  if (ev.message === "/scan_gold") {
+  if (ev.message === 
+      "/scan gold"
+     ) {
     ev.cancel = true;
 
     findBlockAround(player, "minecraft:gold_ore", 1000, 20, (location) => {

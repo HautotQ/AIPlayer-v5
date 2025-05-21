@@ -1,4 +1,5 @@
 import { world, BlockLocation, MinecraftBlockTypes, system } from "@minecraft/server";
+import { genererIAAutourDuJoueur } from "./starter_pack.js";
 
 function sortCommand(command) {
   switch (ev.message) {

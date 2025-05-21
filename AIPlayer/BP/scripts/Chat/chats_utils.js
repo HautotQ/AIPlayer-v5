@@ -1,6 +1,6 @@
 import { world, system } from "@minecraft/server";
 
-const url = "http://localhost:8080/ask"; // Ton API locale
+const url = "http://172.20.10.2:8080/ask"; // Ton API locale
 
 // Fonction pour interroger l'IA avec un prompt donné
 function fetchIAResponse(prompt, player) {

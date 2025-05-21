@@ -1,5 +1,5 @@
 import { world, BlockLocation, MinecraftBlockTypes, system } from "@minecraft/server";
-import { genererIAAutourDuJoueur } from "./starter_pack.js";
+import { genererIAAutourDuJoueur } from "../starter_pack.js";
 
 function sortCommand(command) {
   switch (ev.message) {
@@ -13,7 +13,7 @@ function sortCommand(command) {
         player.runCommand(`tellraw @a {"rawtext":[{"text":"[IA] Humanoïde générée près de ${player.name} !"}]}`);
       });
     break;
-  case "/scan":
+  case "/scan iron":
     // lancer la fonction de scan
     break;
   }

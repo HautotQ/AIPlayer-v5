@@ -36,6 +36,14 @@
         "add": {
           "component_groups": ["hostile_mode"]
         }
+      },
+      "tabarcraft:sneak": {
+        "add": {
+          "component_groups": ["sneaking_mode"]
+        },
+        "remove": {
+          "component_groups": ["hostile_mode"]
+        }
       }
     },
     "component_groups": {
@@ -57,6 +65,14 @@
         "minecraft:behavior.melee_attack": {
           "priority": 1
         }
+      },
+      "sneaking_mode": {
+        "minecraft:movement": {
+          "value": 0.05
+        },
+        "minecraft:annotation.break_blocks": false,
+        "minecraft:annotation.can_climb": false,
+        "minecraft:annotation.fire_immune": false
       }
     }
   }

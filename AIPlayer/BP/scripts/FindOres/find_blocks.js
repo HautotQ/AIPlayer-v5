@@ -8,7 +8,7 @@ import { world, BlockLocation, MinecraftBlockTypes, system } from "@minecraft/se
  * @param {number} step - Espacement entre les points analysés (plus le step est grand, plus c'est rapide mais moins précis).
  * @param {(blockLocation: BlockLocation) => void} onFound - Fonction appelée quand le bloc est trouvé.
  */
-function findBlockAround(entity, blockTypeId, radius = 1000, step = 10, onFound) {
+export function findBlockAround(entity, blockTypeId, radius = 1000, step = 10, onFound) {
   const center = entity.location;
 
   let x = -radius;

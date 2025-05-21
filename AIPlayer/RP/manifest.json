@@ -1,0 +1,24 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "Template",
+		"description": "Template Resource Pack",
+		"uuid": "064d37d6-9b3a-422c-b373-02f8a16573d4",
+		"version": [1, 0, 0],
+		"min_engine_version": [1, 16, 0]
+	},
+	"metadata": {
+		"authors": ["Tabarcraft"],
+		"generated_with": {
+			"blockbench_entity_wizard": ["1.7.0"]
+		}
+	},
+	"modules": [
+		{
+			"description": "Template",
+			"type": "resources",
+			"uuid": "e50606a2-6b5c-4d61-8349-406e1764493e",
+			"version": [1, 0, 0]
+		}
+	]
+}

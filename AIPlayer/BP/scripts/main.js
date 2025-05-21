@@ -11,6 +11,18 @@ world.events.playerJoin.subscribe(event => {
     player.runCommand(`tellraw @a {"rawtext":[{"text":"[IA] Humanoïde générée près de ${player.name} !"}]}`);
 });
 
+world.beforeEvents.chatSend.subscribe(ev => {
+  const player = ev.sender;
+
+  if (ev.message === "/scan_gold") {
+    ev.cancel = true;
+
+    findBlockAround(player, "minecraft:gold_ore", 1000, 20, (location) => {
+      player.runCommandAsync(`say Bloc d'or trouvé en ${location.x}, ${location.y}, ${location.z}`);
+    });
+  }
+});
+
 system.runInterval(() => {
   for (const player of world.getPlayers()) {
     const dimension = player.dimension;

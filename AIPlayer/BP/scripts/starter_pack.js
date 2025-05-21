@@ -6,7 +6,7 @@ import { world, Vector } from "@minecraft/server";
  * @param {string} entityType - Le type de l'entité humanoïde à générer (ex: "namespace:humanoide")
  * @returns {Entity} L'entité générée
  */
-function genererIAAutourDuJoueur(player, entityType) {
+export function genererIAAutourDuJoueur(player, entityType) {
     const positionJoueur = player.location;
 
     // Générer une position aléatoire dans un rayon de 5 blocs autour du joueur (sur le même niveau Y)

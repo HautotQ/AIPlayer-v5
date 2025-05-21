@@ -1,5 +1,6 @@
 import { world, system } from "@minecraft/server";
 import { genererIAAutourDuJoueur } from "./starter_pack.js";
+import { findBlockAround } from "./FindOres/find_blocks.js";
 
 // Événement à déclencher quand un joueur se connecte
 world.events.playerJoin.subscribe(event => {

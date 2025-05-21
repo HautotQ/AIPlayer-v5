@@ -14,7 +14,9 @@ function sortCommand(command) {
       });
     break;
   case "/scan iron":
-    // lancer la fonction de scan
+    findBlockAround(player, "minecraft:gold_ore", 1000, 20, (location) => {
+      player.runCommandAsync(`say Bloc d'or trouvé en ${location.x}, ${location.y}, ${location.z}`);
+    });
     break;
   }
 }

@@ -1,4 +1,15 @@
 import { world, system } from "@minecraft/server";
+import { genererIAAutourDuJoueur } from "./starter_pack.js";
+
+// Événement à déclencher quand un joueur se connecte
+world.events.playerJoin.subscribe(event => {
+    const player = event.player;
+    const entityType = "tabarcraft:ai_agent"; // Remplace par le type réel de ton entité
+
+    const ia = genererIAAutourDuJoueur(player, entityType);
+
+    player.runCommand(`tellraw @a {"rawtext":[{"text":"[IA] Humanoïde générée près de ${player.name} !"}]}`);
+});
 
 system.runInterval(() => {
   for (const player of world.getPlayers()) {
@@ -43,7 +54,7 @@ world.beforeEvents.chatSend.subscribe((event) => {
       entity.triggerEvent("tabarcraft:become_hostile");
 
       // Message rouge via tellraw
-      entity.runCommandAsync(`tellraw @a {"rawtext":[{"text":"§cTU N'AURAIS JAMAIS, AU GRAND JAMAIS DÛ PRONONCER CE MOT !!!!! TU VAS LE PAYER CHER !"}]}`);
+      world.getDimension("overworld").runCommandAsync(`tellraw @a {"rawtext":[{"text":"§cTU N'AURAIS JAMAIS, AU GRAND JAMAIS DÛ PRONONCER CE MOT !!!!! TU VAS LE PAYER CHER !"}]}`);
     }
   }
 });

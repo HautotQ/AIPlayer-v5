@@ -11,5 +11,18 @@
   "andesite_stairs": "minecraft:andesite_stairs",
   "anvil": "minecraft:anvil",
   "bamboo": "minecraft:bamboo",
-  "bamboo_sapling"
+  "bamboo_sapling": "minecraft:bamboo_sapling",
+  "barrel": "minecraft:barrel",
+  "basalt": "minecraft:basalt",
+  "bed": "minecraft:bed",
+  "bedrock": "minecraft:bedrock",
+  "beetroot": "minecraft:beetroot",
+  "bell": "minecraft:bell",
+  "birch_button": "minecraft:birch_button",
+  "birch_door": "minecraft:birch_door",
+  "birch_fence_gate": "minecraft:birch_fence_gate",
+  "birch_pressure_plate": "minecraft:birch_pressure_plate",
+  "birch_stairs": "minecraft:birch_stairs",
+  "birch_standing_sign": "minecraft:birch_standing_sign",
+  
 }

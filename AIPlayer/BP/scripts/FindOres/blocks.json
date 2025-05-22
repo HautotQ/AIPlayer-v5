@@ -7,5 +7,9 @@
   "acacia_standing_sign": "minecraft:acacia_standing_sign",
   "acacia_trapdoor": "minecraft:acacia_trapdoor",
   "acacia_wall_sign": "minecraft:acacia_wall_sign",
-  "activator_rail"
+  "activator_rail": "minecraft:activator_rail",
+  "andesite_stairs": "minecraft:andesite_stairs",
+  "anvil": "minecraft:anvil",
+  "bamboo": "minecraft:bamboo",
+  "bamboo_sapling"
 }

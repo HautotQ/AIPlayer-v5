@@ -24,5 +24,7 @@
   "birch_pressure_plate": "minecraft:birch_pressure_plate",
   "birch_stairs": "minecraft:birch_stairs",
   "birch_standing_sign": "minecraft:birch_standing_sign",
-  "birch_trapdoor"
+  "birch_trapdoor": "minecraft:birch_trapdoor",
+  "birch_wall_sign": "minecraft:birch_wall_sign",
+  
 }

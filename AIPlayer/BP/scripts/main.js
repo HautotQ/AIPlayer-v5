@@ -29,12 +29,15 @@ fetch(url, {
 .then(data => {
     if (data.reponse) {
         console.log("Réponse IA :", data.reponse);
+        world.sendMessage("Réponse IA :", data.reponse);
         // Exécuter des actions dans Minecraft selon la réponse
         // Par exemple : changer la direction d’un mob, ou déclencher une animation
     } else {
         console.error("Erreur retournée par l’IA :", data.erreur);
+        world.sendMessage("Erreur retournée par l’IA :", data.erreur);
     }
 })
 .catch(error => {
     console.error("Échec de communication avec le serveur IA :", error);
+    world.sendMessage("Échec de communication avec le serveur IA :", error);
 });

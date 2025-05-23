@@ -1,5 +1,5 @@
 {
-  "format_version": "1.20.10",
+  "format_version": "1.19.0",
   "minecraft:entity": {
     "description": {
       "identifier": "tabarcraft:ai_agent",
@@ -8,72 +8,15 @@
       "is_experimental": false
     },
     "components": {
-      "minecraft:type_family": {
-        "family": ["tabar_ai", "humanoid", "monster"]
-      },
-      "minecraft:physics": {},
-      "minecraft:nameable": {},
-      "minecraft:health": {
-        "value": 40,
-        "max": 40
-      },
-      "minecraft:movement": {
-        "value": 0.2
-      },
-      "minecraft:attack": {
-        "damage": 6
-      },
-      "minecraft:behavior.random_stroll": {
-        "priority": 1
-      },
-      "minecraft:behavior.look_at_player": {
-        "priority": 2,
-        "look_distance": 6
-      }
+      "minecraft:type_family": { "family": ["ai", "monster"] },
+      "minecraft:health": { "value": 20, "max": 20 },
+      "minecraft:movement": { "value": 0.1 }
     },
-    "events": {
-      "tabarcraft:become_hostile": {
-        "add": {
-          "component_groups": ["hostile_mode"]
-        }
-      },
-      "tabarcraft:sneak": {
-        "add": {
-          "component_groups": ["sneaking_mode"]
-        },
-        "remove": {
-          "component_groups": ["hostile_mode"]
-        }
-      }
-    },
-    "component_groups": {
-      "hostile_mode": {
-        "minecraft:behavior.nearest_attackable_target": {
-          "priority": 0,
-          "target_dist": 16,
-          "entity_types": [
-            {
-              "filters": {
-                "test": "is_family",
-                "operator": "==",
-                "value": "player"
-              },
-              "max_dist": 16
-            }
-          ]
-        },
-        "minecraft:behavior.melee_attack": {
-          "priority": 1
-        }
-      },
-      "sneaking_mode": {
-        "minecraft:movement": {
-          "value": 0.05
-        },
-        "minecraft:annotation.break_blocks": false,
-        "minecraft:annotation.can_climb": false,
-        "minecraft:annotation.fire_immune": false
-      }
+    "component_groups": {},
+    "events": {},
+    "scripts": {
+      "animate": [],
+      "scripts": ["scripts/ai_logic.js"]
     }
   }
 }

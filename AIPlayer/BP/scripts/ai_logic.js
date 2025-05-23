@@ -29,7 +29,7 @@ function boucleIA() {
     for (const agent of agents) {
         const input = observerEntite(agent);
 
-        fetch("https://TON_MODELE/predict", {
+        fetch("https://TabarcraftOfficiel--AIPlayer_v5.hf.space/predict", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ input: input })

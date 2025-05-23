@@ -1,44 +1,75 @@
 import { world, system } from "@minecraft/server";
 
-function observerEntite(entite) {
-    const pos = entite.location;
-    return [
-        pos.x / 100,
-        pos.y / 100,
-        pos.z / 100
-    ];
+let playerId = null;
+let aiEntity = null;
+
+const AI_TYPE = "minecraft:wolf"; // Tu peux remplacer par un mob personnalisé si tu en as créé un.
+
+function distance(a, b) {
+  return Math.sqrt(
+    Math.pow(a.x - b.x, 2) +
+    Math.pow(a.y - b.y, 2) +
+    Math.pow(a.z - b.z, 2)
+  );
 }
 
-function agir(entite, action) {
-    const pos = entite.location;
-    switch (action) {
-        case 0:
-            entite.runCommandAsync(`tp @s ${pos.x + 1} ${pos.y} ${pos.z}`);
-            break;
-        case 1:
-            entite.runCommandAsync(`say Je regarde autour`);
-            break;
-        case 2:
-            entite.runCommandAsync(`summon lightning_bolt ${pos.x} ${pos.y} ${pos.z}`);
-            break;
+function getNearestHostileEntity(origin, entities) {
+  let closest = null;
+  let minDist = Infinity;
+  for (const entity of entities) {
+    if (entity.type.startsWith("minecraft:") &&
+        (entity.type.includes("zombie") || entity.type.includes("skeleton") || entity.type.includes("creeper"))) {
+      const dist = distance(origin, entity.location);
+      if (dist < minDist) {
+        minDist = dist;
+        closest = entity;
+      }
     }
+  }
+  return closest;
 }
 
-function boucleIA() {
-    const agents = world.getAllEntities().filter(e => e.typeId === "tabarcraft:ai_agent");
-    for (const agent of agents) {
-        const input = observerEntite(agent);
+function followAndProtectAI() {
+  if (!playerId || !aiEntity) return;
 
-        fetch("https://TabarcraftOfficiel--AIPlayer_v5.hf.space/predict", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ input: input })
-        })
-        .then(res => res.json())
-        .then(data => agir(agent, data.reponse[0]))
-        .catch(err => console.warn("Erreur IA:", err));
-    }
+  const player = server.level.getEntity(playerId);
+  if (!player || !aiEntity.isValid()) return;
+
+  const playerPos = player.location;
+  const aiPos = aiEntity.location;
+
+  // Suit le joueur
+  if (distance(playerPos, aiPos) > 4) {
+    aiEntity.runCommand(`tp @s ${playerPos.x + 1} ${playerPos.y} ${playerPos.z + 1}`);
+  }
+
+  // Défend contre les mobs hostiles
+  const nearbyEntities = aiEntity.dimension.getEntities();
+  const target = getNearestHostileEntity(playerPos, nearbyEntities);
+
+  if (target) {
+    aiEntity.runCommand(`attack @e[type=${target.type},r=10]`);
+  }
 }
 
-// Appeler toutes les 3 secondes
-system.runInterval(boucleIA, 60);
+server.system.runInterval(() => {
+  followAndProtectAI();
+}, 20); // toutes les 1 seconde
+
+server.events.playerJoin.subscribe((event) => {
+  const player = event.player;
+  playerId = player.id;
+
+  // Fait apparaître l’IA à côté du joueur
+  const spawnPos = {
+    x: player.location.x + 2,
+    y: player.location.y,
+    z: player.location.z + 2,
+  };
+
+  aiEntity = player.dimension.spawnEntity(AI_TYPE, spawnPos);
+  if (aiEntity) {
+    aiEntity.nameTag = "Compagnon IA";
+    aiEntity.runCommand("tag @s add ai_guardian");
+  }
+});

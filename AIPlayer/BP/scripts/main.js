@@ -12,64 +12,29 @@ world.events.playerJoin.subscribe(event => {
     player.runCommand(`tellraw @a {"rawtext":[{"text":"[IA] Humanoïde générée près de ${player.name} !"}]}`);
 });
 
-world.beforeEvents.chatSend.subscribe(ev => {
-  const player = ev.sender;
+let donnees = [1.0, 0.5, -0.2, 3.1]; // Exemple de données d'entrée
 
-  if (ev.message === 
-      "/scan gold"
-     ) {
-    ev.cancel = true;
+let url = "https://TabarcraftOfficiel--AIPlayer_v5.hf.space/predict"; // 🟢 L'URL de ton Space
 
-    findBlockAround(player, "minecraft:gold_ore", 1000, 20, (location) => {
-      player.runCommandAsync(`say Bloc d'or trouvé en ${location.x}, ${location.y}, ${location.z}`);
-    });
-  }
-});
-
-system.runInterval(() => {
-  for (const player of world.getPlayers()) {
-    const dimension = player.dimension;
-    const entities = dimension.getEntities({ type: "tabarcraft:ai_agent" });
-
-    for (const entity of entities) {
-      const targetPos = player.location;
-      const entityPos = entity.location;
-
-      const dx = targetPos.x - entityPos.x;
-      const dz = targetPos.z - entityPos.z;
-
-      // Tourner vers le joueur
-      const yaw = Math.atan2(dz, dx) * (180 / Math.PI) - 90;
-      entity.setRotation({ x: 0, y: yaw });
-
-      // Se déplacer doucement vers le joueur
-      entity.teleport(
-        {
-          x: entityPos.x + dx * 0.05,
-          y: entityPos.y,
-          z: entityPos.z + dz * 0.05
-        },
-        { facingLocation: targetPos }
-      );
+fetch(url, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        input: donnees
+    })
+})
+.then(response => response.json())
+.then(data => {
+    if (data.reponse) {
+        console.log("Réponse IA :", data.reponse);
+        // Exécuter des actions dans Minecraft selon la réponse
+        // Par exemple : changer la direction d’un mob, ou déclencher une animation
+    } else {
+        console.error("Erreur retournée par l’IA :", data.erreur);
     }
-  }
-}, 10);
-
-world.beforeEvents.chatSend.subscribe((event) => {
-  const message = event.message.toLowerCase();
-
-  if (
-    message.includes("quentin") ||
-    message.includes("Tabarcraft") ||
-    message.includes("Quentin")
-  ) {
-    for (const entity of world.getDimension("overworld").getEntities({
-      type: "tabarcraft:ai_agent"
-    })) {
-      entity.triggerEvent("tabarcraft:become_hostile");
-
-      // Message rouge via tellraw
-      world.getDimension("overworld").runCommandAsync(`tellraw @a {"rawtext":[{"text":"§cTU N'AURAIS JAMAIS, AU GRAND JAMAIS DÛ PRONONCER CE MOT !!!!! TU VAS LE PAYER CHER !"}]}`);
-    }
-  }
+})
+.catch(error => {
+    console.error("Échec de communication avec le serveur IA :", error);
 });

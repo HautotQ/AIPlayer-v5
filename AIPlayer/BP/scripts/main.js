@@ -5,7 +5,7 @@ import { findBlockAround } from "./FindOres/find_blocks.js";
 // Événement à déclencher quand un joueur se connecte
 world.events.playerJoin.subscribe(event => {
     const player = event.player;
-    const entityType = "tabarcraft:ai_agent"; // Remplace par le type réel de ton entité
+    const entityType = "tabarcraft:ai_agent";
 
     const ia = genererIAAutourDuJoueur(player, entityType);
 
